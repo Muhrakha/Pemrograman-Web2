@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
-    <div class:"container">
+    <div class="container">
         <h2>Form Registrasi IT Club GDSC</h2>
         <form method="POST">
             <div class="form-group row">
@@ -88,28 +88,67 @@
                 <th>email</th>
                 <th>jenis kelamin</th>
                 <th>domisili</th>
+                <th>Program Studi</th>
+                <th>Skill Programing</th>
+                <th>Skor</th>
+                <th>Predikat</th>
             </tr>
+
             <?php
             if(isset($_POST['submit'])){
+                // ini buat nim peserta
                 $nim = $_POST['nim'];
+                // ini ya buat nampilke nama peserta ingett kha
                 $nama = $_POST['nama'];
+                // nah ini kau masokke email di web kgek keluar email yg kau isi
                 $email = $_POST['email'];
+                // ontok kau isi jenis kelamin kau
                 $jenis_kelamin = $_POST['jenis_kelamin'];
+                // isi dari domisili kau
                 $domisili = $_POST['domisili'];
-                $key = $_POST['program_studi'];
-                $skill_user = $_POST['skill']
+                // buat masukke program studi
+                $program_studi = $_POST['program_studi'];
+                // buat masukke skill kau biso di mano
+                $skill_user = $_POST['skill'];
+                // nah sekarang ini untuk nampilke total skor dari skill yang telah kau centang2 ke
+                $skor_user = 0;
+                // ini buat nampilke predikat dari total skor kau tadi, jd kgk nampilke brp predikat yg telah kau pilih2 tadi
+                $predikat = "";
+                // ok rakha mari kita olah, inget kha cak praktikum kmren makek foreach yoo, men lupo cek pocok kha!!!
+                    foreach($skill_user as $skor){$skor_user += $skills[$skor];}; 
+                // nah ini buat nilai, dari total kepacakan yang kau pilih total nyo kgk nampilke nilai ;)
+                if($skor_user >= 100){
+                    // nampilke nilai lebihdari 100 bahwa itu tu sangat baik sekali :))
+                    $predikat = "Sangat Baik";
+                } else if ($skor_user >= 60 && $skor_user < 100){
+                    // nampilke nilai 60 dari 100 bahwa itu yo baik, baik maksudnyo bagus la
+                    $predikat = "Baik";
+                }else if($skor_user >= 40 && $nilai < 60 ){
+                    // nampilke nilai ini brrti yo cokop
+                    $predikat = "Cukup";
+                }else if($skor_user > 0 && $nilai < 40){
+                    // kurang kau men nilai antara 0 smpe 40
+                    $predikat = "Kurang";
+                }else if($skor_user == 0){
+                    // men katek nian nilai nah sudem tidak memadai berarti . bepeker
+                    $predikat = "Tidak Memadai";
+                }
+
             ?>
             <tr>
+                <!-- ini btw buat hasil dari input yg kau isi di web mulai dari nim yang kau isi, nama, email dll, TQ. -->
                 <td><?= $nim;?></td>
                 <td><?= $nama;?></td>
                 <td><?= $email;?></td>
                 <td><?= $jenis_kelamin;?></td>
                 <td><?= $domisili;?></td>
                 <td><?= $program_studi;?></td>
-                <td><?foreach($skill_user as $skill){echo $skill . " ";} ?></td>
+                <td><?php foreach($skill_user as $skill){echo $skill . " ";} ?></td>
+                <td><?= $skor_user; ?></td>
+                <td><?= $predikat; ?></td>
             </tr>
-            <?php 
-                } ?>
+            <!-- dah kelar jangan lupo totop, dah mokaseh, powered by @muhrakhaa_ -->
+            <?php } ?>
         </table>
     </div>
 </body>
