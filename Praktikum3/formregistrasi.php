@@ -123,10 +123,10 @@
                 } else if ($skor_user >= 60 && $skor_user < 100){
                     // nampilke nilai 60 dari 100 bahwa itu yo baik, baik maksudnyo bagus la
                     $predikat = "Baik";
-                }else if($skor_user >= 40 && $nilai < 60 ){
+                }else if($skor_user >= 40 && $skor_user < 60 ){
                     // nampilke nilai ini brrti yo cokop
                     $predikat = "Cukup";
-                }else if($skor_user > 0 && $nilai < 40){
+                }else if($skor_user > 0 && $skor_user < 40){
                     // kurang kau men nilai antara 0 smpe 40
                     $predikat = "Kurang";
                 }else if($skor_user == 0){
@@ -143,7 +143,7 @@
                 <td><?= $jenis_kelamin;?></td>
                 <td><?= $domisili;?></td>
                 <td><?= $program_studi;?></td>
-                <td><?php foreach($skill_user as $skill){echo $skill . " ";} ?></td>
+                <td><?php foreach($skill_user as $skill){echo $skill . " ";}; ?></td>
                 <td><?= $skor_user; ?></td>
                 <td><?= $predikat; ?></td>
             </tr>
